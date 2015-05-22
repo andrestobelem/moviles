@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Para ejecutar el servicio para móviles..."
+    return "Para ejecutar el servicio para móviles it a /snap-to-road"
 
 
 @app.route("/snap-to-road", methods=['GET', 'POST'])
@@ -29,8 +29,7 @@ def snap_to_road():
         if a_file and allowed_file(a_file.filename):
             filename = secure_filename(a_file.filename)
             a_file.save(os.path.join(UPLOAD_FOLDER, filename))
-            comando = "cd " + MAP_MATCHING_FOLDER + " ;" + "./map-matching.sh action=match gpx=../moviles/in/moviles.gpx maxSearchMultiplier=150"
-            os.system(comando)
+            os.system("cd " + MAP_MATCHING_FOLDER + " ;" + "./map-matching.sh action=match gpx=../moviles/in/moviles.gpx maxSearchMultiplier=150")
             os.system("mv in/" + filename + ".res.gpx " + SERVER_FOLDER + "/.")
             os.system("rm " + filename)
 
@@ -43,11 +42,11 @@ def snap_to_road():
 
     return '''
     <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
+    <title>Subir un archivo gpx</title>
+    <h1>Subir un archivo gpx</h1>
     <form action="" method=post enctype=multipart/form-data>
       <p><input type=file name=file>
-         <input type=submit value=Upload>
+         <input type=submit value=Subir>
     </form>
     '''
 
