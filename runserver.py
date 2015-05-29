@@ -17,13 +17,8 @@ def allowed_file(filename):
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return "Para ejecutar el servicio para móviles it a /snap-to-road"
-
-
-@app.route("/snap-to-road", methods=['GET', 'POST'])
-def snap_to_road():
     if request.method == 'POST':
         a_file = request.files['file']
         if a_file and allowed_file(a_file.filename):
