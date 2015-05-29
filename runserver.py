@@ -35,8 +35,9 @@ def snap_to_road():
 
             with open(SERVER_FOLDER + '/' + filename + '.res.gpx') as f:
                 content = f.readlines()
-
-            return Response(content, mimetype='application/xml')
+            response = Response(content, mimetype='text/xml')
+            response.headers["Content-Disposition"] ="attachment; filename=result.gpx"
+            return response
 
         pass
 
